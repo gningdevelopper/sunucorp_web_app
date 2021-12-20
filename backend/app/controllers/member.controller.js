@@ -1,7 +1,7 @@
-const { members } = require("../models");
+//const { members } = require("../models");
 const db = require("../models");
 const Members = db.members;
-const Op=db.Sequelize.Op
+const Op=db.Sequelize.Op 
 
 // Create and Save a new Tutorial
 exports.create = (req, res) => {
@@ -39,7 +39,7 @@ exports.findAll = (req, res) => {
  };
 
 exports.findEvents=(req,res)=>{
-    members.findAll({
+    Members.findAll({
         where:{
             date:{[Op.not]:null}
             // [Op.not]:[
