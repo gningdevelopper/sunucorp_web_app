@@ -21,8 +21,14 @@ module.exports = (sequelize, Sequelize) => {
         picture: {
             type: Sequelize.STRING
         },
+        picturedata: {
+            type: Sequelize.BLOB('LONG')
+        },
         picture1: {
             type: Sequelize.STRING
+        },
+        picture1data:{
+            type: Sequelize.BLOB('LONG')
         },
         picture2: {
             type: Sequelize.STRING

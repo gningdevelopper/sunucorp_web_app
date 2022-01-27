@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to bezkoder application." });
+  res.json({ message: "Welcome to sunucorp application." });
 });
 
 // set port, listen for requests
@@ -33,10 +33,12 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
 
-db.sequelize.sync({force: true}).then(() => {
-    console.log('Drop and Resync Db');
-    initial();
-  });
+// db.sequelize.sync({force: true}).then(() => {
+//     console.log('Drop and Resync Db');
+//     initial();
+//   });
+
+db.sequelize.sync();
 
   function initial() {
     Role.create({
@@ -50,5 +52,11 @@ db.sequelize.sync({force: true}).then(() => {
     });
   }
 
+  global.__basedir = __dirname;
+  global.fileName = "This can be accessed anywhere!";
+
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
+require('./app/routes/members.routes')(app);
+require('./app/routes/category.routes')(app);
+require('./app/routes/menu.routes')(app);

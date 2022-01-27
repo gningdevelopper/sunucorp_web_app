@@ -41,6 +41,10 @@ isAdmin = (req, res, next) => {
   });
 };
 
+// getCurrentUser = (req, res, next)=>{
+
+// }
+
 // isModerator = (req, res, next) => {
 //   User.findByPk(req.userId).then(user => {
 //     user.getRoles().then(roles => {

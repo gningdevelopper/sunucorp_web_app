@@ -1,23 +1,24 @@
 const config = require("../config/db.config.js");
 
 const Sequelize = require("sequelize");
-const sequelize = new Sequelize(
-  config.DB,
-  config.USER,
-  config.PASSWORD,
-  {
-    host: config.HOST,
-    dialect: config.dialect,
-    operatorsAliases: false,
+// const sequelize = new Sequelize(
+//   config.DB,
+//   config.USER,
+//   config.PASSWORD,
+//   {
+//     host: config.HOST,
+//     dialect: config.dialect,
+//     operatorsAliases: false,
 
-    pool: {
-      max: config.pool.max,
-      min: config.pool.min,
-      acquire: config.pool.acquire,
-      idle: config.pool.idle
-    }
-  }
-);
+//     pool: {
+//       max: config.pool.max,
+//       min: config.pool.min,
+//       acquire: config.pool.acquire,
+//       idle: config.pool.idle
+//     }
+//   }
+// );
+const sequelize=require('../utils/sequelize-singleton')
 
 const db = {};
 
@@ -42,8 +43,14 @@ db.user.belongsToMany(db.role, {
   otherKey: "roleId"
 });
 
-db.user.hasMany(db.category, { as: "categories" });
-db.category.belongsTo(db.user, {
+// db.user.hasMany(db.category, { as: "categories" });
+// db.category.belongsTo(db.user, {
+//   foreignKey: "userId",
+//   as: "users",
+// });
+
+db.user.hasMany(db.members, { as: "members" });
+db.members.belongsTo(db.user, {
   foreignKey: "userId",
   as: "users",
 });
@@ -56,7 +63,7 @@ db.menu.belongsTo(db.user, {
 
 db.category.hasMany(db.members, { as: "members" });
 db.members.belongsTo(db.category, {
-  foreignKey: "categoryID",
+  foreignKey: "categoryId",
   as: "categories",
 });
 
